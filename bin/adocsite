@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'commander/import'
+
+require 'bundler/setup'
+require 'adocsite'
+
+
+program :version, '1.0.0'
+program :description, 'Very simple static site generator for asciidoc documents'
+
+default_command :build
+
+command :build do |c|
+  c.syntax = 'adocsite build [options]'
+  c.summary = ''
+  c.description = 'Creates static web site from your asciidoc documents'
+  c.example 'Build using default layout', 'adocsite build'
+  c.example 'Build using some other layout', 'adocsite build --layout compact'
+  c.option '--layout STRING', String, 'Specify layout to use for the theme'
+  c.option '--config STRING', String, 'Specify configuration file to use for build'
+  c.action do |args, options|
+  	options.default :layout => 'default'
+
+    Adocsite::Commands::build args, options
+  end
+end
+
+command :dump do |c|
+  c.syntax = 'adocsite dump'
+  c.summary = ''
+  c.description = 'Dumps default configuration, example custom config file and folder with default templates'
+  c.example 'Dump templates and configuration', 'adocsite dump'
+  c.action do |args, options|
+    Adocsite::Commands::dump args, options
+  end
+end
+
+command :post do |c|
+  c.syntax = 'adocsite post  [--config config_file] article_name | --title "article title"'
+  c.summary = ''
+  c.description = 'Post article to a Wordpress blog'
+  c.example 'Post an article by it\'s key name', 'adocsite post my_article_for_blog'
+  c.example 'Post an article by it\'s title', 'adocsite post --title "My article for blog"'
+  c.option '--title STRING', String, 'Specify article to post by it\'s title'
+  c.option '--config STRING', String, 'Specify configuration file to use for posting article'
+  c.action do |args, options|
+    Adocsite::Commands::post args, options
+  end
+end
+
+command :list do |c|
+  c.syntax = 'adocsite list  [--config config_file]'
+  c.summary = ''
+  c.description = 'List all available articles'
+  c.example 'List all available articles', 'adocsite post --list'
+  c.option '--config STRING', String, 'Specify configuration file to use for posting article'
+  c.action do |args, options|
+    Adocsite::Commands::list args, options
+  end
+end
+

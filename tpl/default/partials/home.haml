@@ -1,0 +1,12 @@
+.content
+  %h1 Pages list
+  - get_pages().each do |page|
+    %p
+      %a{:href => sitenav('page', page.name)}
+        = page.name
+  %h1 Categories list
+  - get_categories().each do |category|
+    %p
+      %a{:href => sitenav('category', category.name)}
+        = category.name
+      

@@ -1,0 +1,14 @@
+%html
+  %head
+    %title= page_title
+    %script{:src => 'js/asciidoc.js'}
+    %script{:src => 'js/myblueraven.js'}
+    %link{:rel => 'stylesheet', :media => "screen", :href => 'css/myblueraven.css'}
+  %body
+    #page
+      #header
+        = get_include('header')
+      #content
+        = get_content_for_layout()
+      #footer
+        = get_include('footer')
