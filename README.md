@@ -52,7 +52,7 @@ That's it.
 
 Really.
 
-[Here, let me show you...](http://myblueraven.com/category/adocsite).
+[Here, let me show you...](http://myblueraven.com/adocsite).
 
 
 ## Installation
