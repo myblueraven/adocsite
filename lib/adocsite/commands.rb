@@ -92,8 +92,6 @@ EOS
         end
       end
     end
-    
-    private :Commands.load_config
 
   end
 end

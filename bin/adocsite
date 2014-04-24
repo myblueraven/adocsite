@@ -6,8 +6,7 @@ require 'commander/import'
 require 'bundler/setup'
 require 'adocsite'
 
-
-program :version, '1.0.0'
+program :version, Adocsite::VERSION
 program :description, 'Very simple static site generator for asciidoc documents'
 
 default_command :build
