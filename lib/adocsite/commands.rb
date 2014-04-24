@@ -1,11 +1,7 @@
 module Adocsite
   class Commands
     def Commands.build(args, options)
-      user_config_file_name = options.config || "adocsite_config.rb"
-      user_config_file = File.join(Dir.pwd, user_config_file_name)
-      if File.exists?(user_config_file)
-        require user_config_file
-      end
+      Commands.load_config(args, options)
 
       engine = Adocsite::Engine.new
       engine.build(options.layout)
@@ -34,11 +30,7 @@ EOS
     end
 
     def Commands.post(args, options)
-      user_config_file_name = options.config || "adocsite_wp_config.rb"
-      user_config_file = File.join(Dir.pwd, user_config_file_name)
-      if File.exists?(user_config_file)
-        require user_config_file
-      end
+      Commands.load_config_wp(args, options)
 
       wp = Adocsite::WpPost.new
       
@@ -60,11 +52,7 @@ EOS
     end
 
     def Commands.list(args, options)
-      user_config_file_name = options.config || "adocsite_config.rb"
-      user_config_file = File.join(Dir.pwd, user_config_file_name)
-      if File.exists?(user_config_file)
-        require user_config_file
-      end
+      Commands.load_config(args, options)
 
       alist = Hash.new
       engine = Adocsite::Engine.new
@@ -78,6 +66,34 @@ EOS
 
       puts 'Done.'
     end
+    
+    def Commands.load_config(args, options)
+      user_config_file_name = options.config || "adocsite_config.rb"
+      user_config_file = File.join(Dir.pwd, user_config_file_name)
+      if File.exists?(user_config_file)
+        require user_config_file
+      else
+        user_config_file = File.join(Dir.home, ".adocsite")
+        if File.exists?(user_config_file)
+          require user_config_file
+        end
+      end
+    end
+    
+    def Commands.load_config_wp(args, options)
+      user_config_file_name = options.config || "adocsite_wp_config.rb"
+      user_config_file = File.join(Dir.pwd, user_config_file_name)
+      if File.exists?(user_config_file)
+        require user_config_file
+      else
+        user_config_file = File.join(Dir.home, ".adocsite_wp")
+        if File.exists?(user_config_file)
+          require user_config_file
+        end
+      end
+    end
+    
+    private :Commands.load_config
 
   end
 end
