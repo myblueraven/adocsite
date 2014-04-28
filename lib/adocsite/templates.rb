@@ -1,6 +1,6 @@
 module Adocsite
   class Templates
-    attr_reader :styles, :scripts, :images, :files, :layouts, :partials, :includes, :literals
+    attr_reader :styles, :scripts, :images, :files, :layouts, :partials, :includes, :literals, :resources
     def initialize
       @options = {:remove_whitespace => true}
       # files to copy
@@ -8,6 +8,7 @@ module Adocsite
       @scripts = Array.new
       @images = Array.new
       @files = Array.new
+      @resources = Array.new
 
       # theme template files
       # hashmap keys are template names without .haml extension and values are full paths
@@ -16,42 +17,45 @@ module Adocsite
       @partials = Hash.new
       @includes = Hash.new
       @literals = Hash.new
+
+      @theme_location = File.join(Adocsite::config[:TEMPLATES_FOLDER], Adocsite::config[:THEME])
     end
 
     def find_all_files
-      Dir[File.join(Adocsite::config[:TEMPLATES_FOLDER], "**","*")].reject {|x| File.directory?(x)}
+      Dir[File.join(@theme_location, "**", "*")].reject {|x| File.directory?(x)}
     end
 
     def load_assets
       all_files = find_all_files
 
       templates = all_files.select {|path| path.end_with?(*Adocsite::config[:TEMPLATES])}
+      # theme resources have to be copied with folder structure preserved so we treat them separately in Site class
+      @resources = Dir[File.join(@theme_location, "resources", "**", "*")].reject {|x| File.directory?(x)}
 
-      @styles = all_files.select {|path| path.end_with?(*Adocsite::config[:STYLES])}
-      @scripts = all_files.select {|path| path.end_with?(*Adocsite::config[:SCRIPTS])}
-      @images = all_files.select {|path| path.end_with?(*Adocsite::config[:IMAGES])}
-      @files = all_files - @images - @scripts - @styles - templates
+      @styles = all_files.select {|path| path.end_with?(*Adocsite::config[:STYLES])} - @resources
+      @scripts = all_files.select {|path| path.end_with?(*Adocsite::config[:SCRIPTS])} - @resources
+      @images = all_files.select {|path| path.end_with?(*Adocsite::config[:IMAGES])} - @resources
+      @files = all_files - @images - @scripts - @styles - @resources - templates
 
       # loads layouts, partials, includes and literals into hashmaps.
       # hashmap keys are template names without .haml extension and values are full paths
       # literal names are full file names (without path portion) and values are full paths
-      theme_location = File.join(Adocsite::config[:TEMPLATES_FOLDER], Adocsite::config[:THEME])
-      layouts = templates.select {|path| path.start_with?(File.join(theme_location, "layouts")) }
+      layouts = templates.select {|path| path.start_with?(File.join(@theme_location, "layouts")) }
       layouts.each {|layout|
         layout_name = File.basename(layout, '.*')
         @layouts[layout_name] = layout
       }
-      partials = templates.select {|path| path.start_with?(File.join(theme_location, "partials")) }
+      partials = templates.select {|path| path.start_with?(File.join(@theme_location, "partials")) }
       partials.each {|partial|
         partial_name = File.basename(partial, '.*')
         @partials[partial_name] = partial
       }
-      includes = templates.select {|path| path.start_with?(File.join(theme_location, "includes")) }
+      includes = templates.select {|path| path.start_with?(File.join(@theme_location, "includes")) }
       includes.each {|include|
         include_name = File.basename(include, '.*')
         @includes[include_name] = include
       }
-      literals = @files.select {|path| path.start_with?(File.join(theme_location, "literals")) }
+      literals = @files.select {|path| path.start_with?(File.join(@theme_location, "literals")) }
       literals.each {|literal|
         literal_name = File.basename(literal)
         @literals[literal_name] = literal
