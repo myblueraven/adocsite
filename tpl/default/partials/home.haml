@@ -1,12 +1,14 @@
-.content
-  %h1 Pages list
+%h3 Pages list
+%div.list-group
   - get_pages().each do |page|
-    %p
-      %a{:href => sitenav('page', page.name)}
-        = page.name
-  %h1 Categories list
+    %a.list-group-item{:href => sitenav('page', page.name)}
+      = page.name
+%h3 Categories list
+%ul.list-group
   - get_categories().each do |category|
-    %p
+    %li.list-group-item
+      %span.badge
+        = category.articles.length
       %a{:href => sitenav('category', category.name)}
         = category.name
       

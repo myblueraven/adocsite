@@ -1,6 +1,11 @@
-%p
-  - category.articles.each do |article|
-    %p
-      %a{:href => sitenav('article', article.name)}
-        = article.title
+%table.table
+  %thead
+    %th
+      = category.name
+  %tbody
+    - category.articles.each do |article|
+      %tr
+        %td
+          %a{:href => sitenav('article', article.name)}
+            = article.title
       

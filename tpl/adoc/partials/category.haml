@@ -1,0 +1,6 @@
+%p
+  - category.articles.each do |article|
+    %p
+      %a{:href => sitenav('article', article.name)}
+        = article.title
+      

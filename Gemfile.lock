@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adocsite (1.0.1)
+    adocsite (1.0.3)
       asciidoctor
       commander
       haml

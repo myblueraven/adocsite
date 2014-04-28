@@ -1,11 +1,41 @@
 @import url("asciidoctor.css");
 
-#footer {
-	color: #6F6F6F
+html {
+	position: relative;
+	min-height: 100%;
 }
-
+body {
+	/* Margin bottom by footer height */
+	margin-bottom: 60px;
+}
+#header {
+	/* Set the fixed height of the header here */
+	/*height: 60px;*/
+	background-color: #6F6F6F;
+	color: #E0E0E0;
+}
+#content {
+	margin-top: 20px;
+}
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #6F6F6F;
+	color: #f5f5f5;
+}
 #page {
 	margin-left: auto;
 	margin-right: auto;
 	width: 70%;
+}
+
+.highlight {
+    padding: 9px 14px;
+    margin-bottom: 14px;
+    background-color: #F7F7F9;
+    border: 1px solid #E1E1E8;
+    border-radius: 4px;
 }

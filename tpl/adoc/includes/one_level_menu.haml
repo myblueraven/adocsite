@@ -1,0 +1,5 @@
+%ul
+  - SiteCore.get_categories.each do |category|
+    %li
+      %a(href="show?cat=#{category}")
+        = category

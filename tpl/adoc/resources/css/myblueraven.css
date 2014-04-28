@@ -1,0 +1,11 @@
+@import url("asciidoctor.css");
+
+#footer {
+	color: #6F6F6F
+}
+
+#page {
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+}

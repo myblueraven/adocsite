@@ -1,0 +1,9 @@
+%ul
+  - get_categories().each do |category|
+    %li
+      = category.name
+      %ul
+        - category.articles.each do |article|
+          %li
+            %a(href="show?article=#{article.doctitle}")
+              = article.title

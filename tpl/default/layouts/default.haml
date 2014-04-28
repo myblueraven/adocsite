@@ -1,14 +1,19 @@
+!!!
 %html
   %head
     %title= page_title
-    %script{:src => 'js/asciidoc.js'}
+    %script{:src => 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'}
+    %script{:src => 'js/bootstrap.min.js'}
     %script{:src => 'js/myblueraven.js'}
+    %link{:rel => 'stylesheet', :media => "screen", :href => 'css/bootstrap.min.css'}
     %link{:rel => 'stylesheet', :media => "screen", :href => 'css/myblueraven.css'}
   %body
-    #page
-      #header
+    #page.container
+      #header.row
         = get_include('header')
-      #content
+      #content.row
         = get_content_for_layout()
-      #footer
-        = get_include('footer')
+    #footer
+      = get_include('footer')
+    %script
+      = get_literal('google_analytics')
