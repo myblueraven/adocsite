@@ -1,4 +1,8 @@
-# ADocSite in a few words
+# adocsite
+
+[![Gem Version](https://badge.fury.io/rb/adocsite.svg)](http://badge.fury.io/rb/adocsite)
+
+## ADocSite in a few words
 
 The idea behind this gem is this:
 
@@ -15,7 +19,7 @@ and generates one simple static web site out of it.
 
 Now you can go, open index.html and browse through all those documents of yours and view them as web pages.
 
-# Some more details 
+## Some more details 
 
 ADocSite is implemented in [Ruby](https://www.ruby-lang.org/en/). It expects that all files with content are 
 written as [asciidoc](http://www.methods.co.nz/asciidoc/) text files. These files are converted into HTML using [asciidoctor](http://asciidoctor.org/).
