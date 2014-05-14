@@ -77,11 +77,31 @@ Or install it yourself as:
 
 OK! So, you can do these things with adocsite:
 
-	$ adocsite
-	$ adocsite build
-	$ adocsite dump
+    $ adocsite
+    $ adocsite build
+    $ adocsite dump
 
 First two are identical: calling adocsite without parameters is same as asking it to do build.
+
+### adocsite build
+
+Create folder to work in (let's say it's called "Documents")
+
+    $ mkdir Documents
+    $ cd Documents
+
+Create folders in there to hold your stuff:
+
+    $ mkdir work
+    $ mkdir docs
+
+Collect all your adoc documents into **work** and/or **docs** folder(s) you created in previous step.
+
+Run adocsite:
+
+    $ adocsite
+
+After build is finished there will be new folder in **Documents** called **deploy**. There you can find output of adocsite's hard work.
 
 
 ## Contributing
