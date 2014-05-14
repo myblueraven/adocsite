@@ -9,7 +9,7 @@ module Adocsite
 
     def Commands.dump(args, options)
       # default template
-      FileUtils.cp_r(Adocsite.config[:TEMPLATES_FOLDER], "adocsite_default_template")
+      FileUtils.cp_r(Adocsite.config[:TEMPLATES_FOLDER], "adocsite_default_templates")
 
       # default configuration
       conf = <<-EOS

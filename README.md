@@ -83,6 +83,21 @@ OK! So, you can do these things with adocsite:
 
 First two are identical: calling adocsite without parameters is same as asking it to do build.
 
+### adocsite dump
+
+If you run this command you will get adocsite to dump it's templates and configurations into current folder. So, after running:
+
+    $ adocsite dump
+
+you will end up with:
+
+* folder **adocsite__default__templates** which will contain all HAML adocsite templates
+* file **adocsite__default__config.rb** which contains adocsite default configuration
+* file **adocsite__custom__config__sample.rb** with example of custom configuration for site builder
+* file **adocsite__wp__config__sample.rb** with example of custom configuration for wordpress article poster (heavy beta phase, avoid it for now :o)
+
+These can be your starting point for customizing/configuring adocsite output to your liking.
+
 ### adocsite build
 
 Create folder to work in (let's say it's called "Documents")
@@ -101,8 +116,50 @@ Run adocsite:
 
     $ adocsite
 
-After build is finished there will be new folder in **Documents** called **deploy**. There you can find output of adocsite's hard work.
+After build is finished there will be new folder in **Documents** called **deploy**. There you can find output of adocsite's hard work. Open deploy/index.html in your browser and check out the results.
 
+#### customize the build
+
+If you would like to change what can be changed in adocsite, then first run
+
+    $ adocsite dump
+
+to get templates and default configs from adocsite.
+
+Then you can make your own config file with custom settings (i.e. different names for folder(s) where you keep your documents, instead of default **work** and **docs**) or you can tweak existing or create new templates.
+
+With config files you can do two things:
+
+1. save them in the folder you use to run adocsite in (i.e. **Documents** from above example)
+2. save them in your $HOME folder with names **.adocsite** and **.adocsite_wp** (notice the dot at the start)
+
+If you choose 1. then you need to tell adocsite to use that config file by running it like this
+
+    $ adocsite build --config my_custom_config.rb
+
+or
+
+    $ adocsite --config my_custom_config.rb
+
+If you choose 2. then your custom configuration files will be used **always** when you run adocsite like usual:
+
+    $ adocsite
+
+or
+
+    $ adocsite build
+
+#### custom templates
+
+If you choose to edit/create new HAML templates for adocsite, first dump the ones adocsite uses and start there. Templates folder contains subfolders whose names are used as names of layouts. Default layout will be taken from subfolder named, yes, **default**. If you want to choose different layout run adocsite like this:
+
+    $ adocsite --layout adoc
+
+This way adocsite will use templates from subfolder named **adoc** for building output.
+
+If you make your own changes then
+
+1. create templates folder (or rename one dumped by adocsite) 
 
 ## Contributing
 
