@@ -159,7 +159,29 @@ This way adocsite will use templates from subfolder named **adoc** for building 
 
 If you make your own changes then
 
-1. create templates folder (or rename one dumped by adocsite) 
+1. create templates folder (or rename one dumped by adocsite)
+2. create subfolder **default**
+3. put your templates in **default** subfolder
+4. make/modify adocsite config file to tell it where new templates are
+5. run adocsite using your custom config file
+
+i.e. put in your config file line like this:
+
+    :TEMPLATES_FOLDER => "/home/username/Documents/tpl",
+
+and then run adocsite like this
+
+    $ adocsite --config my_config.rb
+
+If you have more than one template layout (i.e. more subfolders in templates folder) choose between them like this:
+
+    $ adocsite --config my_config.rb --layout blue_boxed
+
+or
+
+    $ adocsite --config my_config.rb --layout orange
+
+etc.
 
 ## Contributing
 
