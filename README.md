@@ -75,7 +75,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+OK! So, you can do these things with adocsite:
+
+	$ adocsite
+	$ adocsite build
+	$ adocsite dump
+
+First two are identical: calling adocsite without parameters is same as asking it to do build.
+
 
 ## Contributing
 
