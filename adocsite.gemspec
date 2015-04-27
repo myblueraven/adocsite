@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["bb@myblueraven.com"]
   spec.summary       = %q{Static site generator.}
   spec.description   = %q{Very simple static site generator for asciidoc documents.}
-  spec.homepage      = "http://myblueraven.com/adocsite"
+  spec.homepage      = "https://github.com/myblueraven/adocsite#adocsite"
   spec.license       = "GPL v3"
 
   spec.files         = `git ls-files -z`.split("\x0")
